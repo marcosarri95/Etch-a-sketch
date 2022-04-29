@@ -96,32 +96,64 @@ function determinarBoton(){
 });
 // fin
 
+let arrastrar = false;
 const dibujo = document.querySelectorAll('div');
 dibujo.forEach(div => 
-    div.addEventListener('mousedown', function(e){
+div.addEventListener('mousedown', function(e){
         e.stopPropagation();
-        if(e.target.classList.value == "caja"){
+        if(e.target.classList.value == "caja" && event.button == 0){
             switch(determinarBoton()){
-                case 0:
-                    color = document.querySelector('#colores');
-                    e.target.style.background = String(color.value);
+                case 0:                        
+                    arrastrar = true;
+                    const color = document.querySelector('#colores');
+                    e.target.style.background = String(color.value)
                 break;
                 case 1:
+                    arrastrar = true;
                     //e.target.style.background = ;
                 break;
                 case 2:
+                    arrastrar = true;
                     e.target.style.background = 'white';
                 break;
                 case 3:
-
+                    arrastrar = false;
                 break;
                 default:
                     //console.log(e.target.classList.value);
             }
-        }
-        
+            //console.log(arrastrar);
+        } 
     }));
-   
+
+    dibujo.forEach(div => 
+        div.addEventListener('mousemove',function(e){
+        e.stopPropagation();
+        
+        let a = determinarBoton();
+        if(a == 0){
+        if((e.target.classList.value == "caja") && (arrastrar == true)){
+            const color = document.querySelector('#colores');
+            e.target.style.background = String(color.value);
+        }
+        }
+        else if(a==1){
+            
+        }
+        else if(a==2){
+            if((e.target.classList.value == "caja") && (arrastrar == true)){
+                e.target.style.background = 'white';
+            }
+        }
+    }));
+
+    dibujo.forEach(div => 
+  div.addEventListener('mouseup',function(e){
+        e.stopPropagation();
+        arrastrar = false;  
+        //console.log(arrastrar); 
+        }));
+
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => button.addEventListener('click', function(e){
