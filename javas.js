@@ -28,18 +28,101 @@ function limpiarBoton(a){
     });
     }
 
+function determinarBoton(){
+    const button1 = document.querySelector('.color');
+    const button2 = document.querySelector('.arcoi');
+    const button3 = document.querySelector('.borrar');
+    const button4 = document.querySelector('.limpiar');
+    let a;
+        
+            if(button1.classList.value == "color seleccion"){
+                a = 0;
+            }
+            else if(button2.classList.value == "arcoi seleccion"){
+                a = 1;
+                }
+            else if(button3.classList.value == "borrar seleccion"){
+                a = 2;
+                }
+            else if(button4.classList.value == "limpiar seleccion"){
+                a = 3;
+                }
+            else{
+                a = 4;
+            }        
+        return a;
+}
 
 
-const rango = document.querySelector('#rango');
-rango.addEventListener('input',function(e){
-const rango1 = document.querySelector('.rango1');
-const rango2 = document.querySelector('.rango2');
-rango1.textContent = String(rango.value);
-rango2.textContent = String(rango.value);
+//inicialmente
 
-const grilla = document.querySelector(".grilla");
+    const rango = document.querySelector('#rango');
+    const rango1 = document.querySelector('.rango1');
+    const rango2 = document.querySelector('.rango2');
+    rango1.textContent = "16";
+    rango2.textContent = "16";
+    const grilla = document.querySelector("#grilla");  
+    let a = rango.value;
+    for(let i = 1; i<=(a*a) ; i++){
+        const div = document.createElement('div');
+        div.setAttribute('style',`background-color: white; width: ${String( (500/a * 100)/100 )}px; height: ${String( (500/a * 100)/100) }px; border: none; padding:none; margin:none;`);
+        div.classList.add('caja');
+        grilla.appendChild(div);
+    }
+
+
+//cada vez que se mueve la barrita//
+
+
+    rango.addEventListener('input',function(e){
+    const rango1 = document.querySelector('.rango1');
+    const rango2 = document.querySelector('.rango2');
+    rango1.textContent = String(rango.value);
+    rango2.textContent = String(rango.value);
+    const grilla = document.querySelector("#grilla");
+
+    while (grilla.firstChild) {
+        grilla.removeChild(grilla.firstChild);
+      }
+      
+    let a = rango.value;
+    for(let i = 1; i<=(a*a) ; i++){
+        const div = document.createElement('div');
+        div.setAttribute('style',`background-color: white; width: ${String( (500/a * 100)/100 )}px; height: ${String( (500/a * 100)/100) }px; border: none; padding:none; margin:none;`);
+        div.classList.add('caja');
+        grilla.appendChild(div);
+    }
 
 });
+// fin
+
+const dibujo = document.querySelectorAll('div');
+dibujo.forEach(div => 
+    div.addEventListener('mousedown', function(e){
+        e.stopPropagation();
+        
+        if(e.target.classList.value == "caja"){
+            switch(determinarBoton()){
+                case 0:
+                    color = document.querySelector('#colores');
+                    e.target.style.background = String(color.value);
+                break;
+                case 1:
+
+                break;
+                case 2:
+                    e.target.style.background = 'white';
+                break;
+                case 3:
+
+                break;
+                default:
+                    //console.log(e.target.classList.value);
+            }
+            
+        }
+    }));
+   
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => button.addEventListener('click', function(e){
@@ -52,6 +135,7 @@ buttons.forEach(button => button.addEventListener('click', function(e){
         const but = document.querySelector('.color');
         but.classList.add('seleccion');
         limpiarBoton("color");
+
     }
     else if(a == "arcoi efecto cursor"){
         this.classList.remove("efecto");
@@ -73,6 +157,11 @@ buttons.forEach(button => button.addEventListener('click', function(e){
         const but = document.querySelector('.limpiar');
         but.classList.add('seleccion');
         limpiarBoton("limpiar");
+
+        const dibujo = document.querySelectorAll('.caja');
+        dibujo.forEach(div => 
+            div.style.background = 'white'
+            );
     }
     else{
 
