@@ -110,7 +110,10 @@ div.addEventListener('mousedown', function(e){
                 break;
                 case 1:
                     arrastrar = true;
-                    //e.target.style.background = ;
+                    let p1 = Math.floor(Math.random() * 254);
+                    let p2 = Math.floor(Math.random() * 254);
+                    let p3 = Math.floor(Math.random() * 254);
+                    e.target.style.background = `rgb(${String(p1)},${String(p2)},${String(p3)})`;
                 break;
                 case 2:
                     arrastrar = true;
@@ -138,7 +141,12 @@ div.addEventListener('mousedown', function(e){
         }
         }
         else if(a==1){
-            
+            if((e.target.classList.value == "caja") && (arrastrar == true)){
+            let p1 = Math.floor(Math.random() * 254);
+            let p2 = Math.floor(Math.random() * 254);
+            let p3 = Math.floor(Math.random() * 254);
+             e.target.style.background = `rgb(${String(p1)},${String(p2)},${String(p3)})`;
+            }
         }
         else if(a==2){
             if((e.target.classList.value == "caja") && (arrastrar == true)){
