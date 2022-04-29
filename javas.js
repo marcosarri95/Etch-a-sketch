@@ -130,7 +130,7 @@ div.addEventListener('mousedown', function(e){
     }));
 
     dibujo.forEach(div => 
-        div.addEventListener('mousemove',function(e){
+        div.addEventListener('mouseover',function(e){
         e.stopPropagation();
         
         let a = determinarBoton();
