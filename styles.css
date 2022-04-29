@@ -104,10 +104,14 @@ body {
     }
 
     .efecto {
-        transform: scale(1.09);
+        transform: scale(1.1);
         border-color: black;
         box-shadow: 0 0 1rem black;
       }
+
+      .efecto2 {
+        transform: scale(1.09);
+        }
 
       .seleccion {
         background-color: black;

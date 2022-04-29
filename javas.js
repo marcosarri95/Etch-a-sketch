@@ -96,11 +96,11 @@ function determinarBoton(){
 });
 // fin
 
-const dibujo = document.querySelectorAll('.caja');
+const dibujo = document.querySelectorAll('div');
 dibujo.forEach(div => 
     div.addEventListener('mousedown', function(e){
         e.stopPropagation();
-        
+        if(e.target.classList.value == "caja"){
             switch(determinarBoton()){
                 case 0:
                     color = document.querySelector('#colores');
@@ -118,7 +118,7 @@ dibujo.forEach(div =>
                 default:
                     //console.log(e.target.classList.value);
             }
-            
+        }
         
     }));
    
@@ -200,3 +200,14 @@ buttons.forEach(button => button.addEventListener('mouseout', function(e) {
 this.classList.remove('efecto');
 this.classList.remove('cursor');
 }));
+
+const colorcito = document.querySelector('#colores');
+colorcito.addEventListener('mouseover',function(e){
+    this.classList.add('efecto2');
+    this.classList.add('cursor');
+});
+
+colorcito.addEventListener('mouseout',function(e){
+    this.classList.remove('efecto2');
+    this.classList.remove('cursor');
+});
