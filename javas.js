@@ -96,19 +96,18 @@ function determinarBoton(){
 });
 // fin
 
-const dibujo = document.querySelectorAll('div');
+const dibujo = document.querySelectorAll('.caja');
 dibujo.forEach(div => 
     div.addEventListener('mousedown', function(e){
         e.stopPropagation();
         
-        if(e.target.classList.value == "caja"){
             switch(determinarBoton()){
                 case 0:
                     color = document.querySelector('#colores');
                     e.target.style.background = String(color.value);
                 break;
                 case 1:
-
+                    //e.target.style.background = ;
                 break;
                 case 2:
                     e.target.style.background = 'white';
@@ -120,7 +119,7 @@ dibujo.forEach(div =>
                     //console.log(e.target.classList.value);
             }
             
-        }
+        
     }));
    
 
